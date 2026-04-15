@@ -24,7 +24,7 @@ def on_reload():
         rendered_page = template.render(
             books=page,   
         )
-        with open(f'pages/index{i}.html', 'w', encoding="utf8") as file:
+        with open(f'pages/index{i+1}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
     print("Site rebuilt")
 
