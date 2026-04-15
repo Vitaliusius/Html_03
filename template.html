@@ -14,8 +14,9 @@
   <body>
 
     <div class="container">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
+      <nav aria-label="Pages navigation ">
+        <hr>
+        <ul class="pagination" style="margin-left: -15px; border-style: hidden">
           {% if current_page == 1 %}
             <li class="page-item disabled">
           {% else %}
@@ -52,7 +53,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{book_one.title}}</h5>
                   <p class="card-text">{{book_one.author}}</p>
-                  <p><a href="{{book_one.book_path|urlencode}}" target="_blank">Читай</a></p>
+                  <h6><span class="badge badge-secondary">{{book_one.genres}}</span></h6>
+                  <p><a href="../{{book_one.book_path|urlencode}}" target="_blank">Читать</a></p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
               </div>
@@ -68,7 +70,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{book_two.title}}</h5>
                   <p class="card-text">{{book_two.author}}</p>
-                  <p><a href="{{book_two.book_path|urlencode}}" target="_blank">Читай</a></p>
+                  <h6><span class="badge badge-secondary">{{book_two.genres}}</span></h6>
+                  <p><a href="../{{book_two.book_path|urlencode}}" target="_blank">Читать</a></p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
               </div>
