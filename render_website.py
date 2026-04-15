@@ -1,4 +1,5 @@
 import json
+import os
 
 from livereload import Server
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -6,6 +7,7 @@ from more_itertools import chunked
 
 
 def on_reload():
+    os.makedirs('pages', exist_ok=True)
     env = Environment(
     loader=FileSystemLoader('.'),
     autoescape=select_autoescape(['html'])
@@ -17,12 +19,13 @@ def on_reload():
         books_json = my_file.read()
     books = json.loads(books_json)
     books = list(chunked(books, 2))
-
-    rendered_page = template.render(
-        books=books,   
-    )
-    with open('index.html', 'w', encoding="utf8") as file:
-        file.write(rendered_page)
+    pages = list(chunked(books, 10))
+    for i, page in enumerate(pages):
+        rendered_page = template.render(
+            books=page,   
+        )
+        with open(f'pages/index{i}.html', 'w', encoding="utf8") as file:
+            file.write(rendered_page)
     print("Site rebuilt")
 
 on_reload()
