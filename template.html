@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -11,13 +12,41 @@
     <title>Hello, world!</title>
   </head>
   <body>
+
     <div class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {% if current_page == 1 %}
+            <li class="page-item disabled">
+          {% else %}
+            <li class="page-item">
+          {% endif %}
+            <a class="page-link" href="index{{current_page-1}}.html" tabindex="-1" aria-disabled="true">Назад</a>
+          </li>
+          {% for page in range(pages_count) %}
+            {% if current_page == page+1 %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="index{{page+1}}.html">{{page+1}}<span class="sr-only">(current)</span></a>
+              </li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="index{{page+1}}.html">{{page+1}}</a></li>
+            {% endif %}
+          {% endfor %} 
+          {% if current_page == pages_count %} 
+            <li class="page-item disabled">
+          {% else %}
+            <li class="page-item">
+          {% endif %}
+            <a class="page-link" href="index{{current_page+1}}.html">Вперед</a>
+          </li>
+        </ul>
+      </nav>
       <div class="row">
         {% for book_one, book_two in books %}
           <div class="card mb-3" style="width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="{{book_one.img_src}}" class="card-img" alt={{book_one.title}}>
+                <img src="../{{book_one.img_src}}" class="card-img" alt={{book_one.title}}>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -33,7 +62,7 @@
           <div class="card mb-3" style="width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="{{book_two.img_src}}" class="card-img" alt={{book_two.title}}>
+                <img src="../{{book_two.img_src}}" class="card-img" alt={{book_two.title}}>
               </div>
               <div class="col-md-8">
                 <div class="card-body">

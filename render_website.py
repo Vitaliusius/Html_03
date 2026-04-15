@@ -1,5 +1,6 @@
 import json
 import os
+import math
 
 from livereload import Server
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -20,9 +21,12 @@ def on_reload():
     books = json.loads(books_json)
     books = list(chunked(books, 2))
     pages = list(chunked(books, 10))
+    
     for i, page in enumerate(pages):
         rendered_page = template.render(
-            books=page,   
+            books=page,
+            pages_count=math.ceil(len(pages)),
+            current_page=i+1
         )
         with open(f'pages/index{i+1}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
