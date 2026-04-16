@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+
 <html lang="ru">
   <head>
     <!-- Required meta tags -->
@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
-    <link rel="icon" href="{% static 'favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="icon" href="../static/favicon.png" type="image/png">
     <title>Библиотека Максима</title>
   </head>
   <body>
@@ -50,14 +50,14 @@
                 <div class="card mb-3" style="width: 540px;">
                   <div class="row no-gutters">
                     <div class="col-md-4">
-                      <img src="{{book.img_src}}" class="card-img" alt={{book.title}}>
+                      <img src="../{{book.img_src}}" class="card-img" alt={{book.title}}>
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title">{{book.title}}</h5>
                         <p class="card-text">{{book.author}}</p>
                         <p><span class="badge badge-light text-wrap" style="max-width: 300px;">{{book.genres}}</span></p>
-                        <p><a href="{{book.book_path|urlencode}}" target="_blank">Читать</a></p>
+                        <p><a href="../{{book.book_path|urlencode}}" target="_blank">Читать</a></p>
                       </div>
                     </div>
                   </div>
@@ -72,8 +72,8 @@
 
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="../static/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
   </body>
 </html>
