@@ -9,11 +9,10 @@ from more_itertools import chunked
 from dotenv import load_dotenv
 
 
-PATH_TO_LIBRARY = env.str("PATH_TO_LIBRARY")
+PATH_TO_LIBRARY = env.str("PATH_TO_LIBRARY", 'meta_data.json')
 
 
 def on_reload():
-    os.makedirs("pages", exist_ok=True)
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(["html"])
@@ -33,9 +32,14 @@ def on_reload():
             file.write(rendered_page)
 
 
-if __name__ == "__main__":
+def main():
+    os.makedirs("pages", exist_ok=True)
     load_dotenv()
     on_reload()
     server = Server()
     server.watch("template.html", on_reload)
     server.serve(root=".")
+
+
+if __name__ == "__main__":
+    main()
